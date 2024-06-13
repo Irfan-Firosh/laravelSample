@@ -24,7 +24,7 @@
             <a href="\" class="navbar-brand">💬 Ping CRM</a>
             @auth
                 <div class="d-flex justify-content-end me-5">
-                    <form action="/logout" method="POST">
+                    <form action="/logout/user" method="POST">
                         @csrf
                         <button type="submit" class="fs-5 btn btn-m btn-primary">Logout</button>
                     </form>

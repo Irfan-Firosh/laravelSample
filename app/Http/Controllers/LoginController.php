@@ -13,15 +13,20 @@ class LoginController extends Controller
 
     public function store(Request $request) {
         $credentials = $request->validate([
-            'email' => 'required|email|max:255',
-            'password' => 'required|max:12|min:7'
+            'email' => 'required',
+            'password' => 'required'
         ]);
 
         $remember = $request->input('frem');
 
-        if (Auth::attempt($credentials, $remember)) {
+        if (Auth::guard('admin')->attempt($credentials, $remember)) {
             $request->session()->regenerate();
-            return redirect()->intended('/dashboard')->with('success', 'Logged In!');
+            return redirect()->route('admin-dash');
+        }
+
+        if (Auth::guard('web')->attempt($credentials, $remember)) {
+            $request->session()->regenerate();
+            return redirect()->route('user-dash')->with('success', 'Logged In!');
         }
 
         return back()->withErrors(['invald' => 'Invalid Email or Password']);

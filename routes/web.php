@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\adminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\queries;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,11 +26,24 @@ Route::get('/secret', function() {
 
 Route::get('register', [RegistrationController::class, 'register'])->middleware('guest');
 Route::post('register', [RegistrationController::class, 'store'])->middleware('guest');
-Route::post('logout', [SessionController::class, 'logout'])->middleware('auth');
 
 Route::get('login', [LoginController::class, 'login'])->middleware('guest')->name('login');
 Route::post('login', [LoginController::class, 'store'])->middleware('guest');
 
+Route::post('logout/admin', [SessionController::class, 'logoutAdmin'])->middleware('auth:admin')->name('logout.admin');
+Route::post('logout/user', [SessionController::class, 'logoutUser'])->middleware('auth:web')->name('logout.user');
+
+
+Route::prefix('admin')->group(function() {
+    Route::get('', [adminController::class, 'dashboard' ])->middleware('auth:admin')->name('admin-dash');
+    Route::get('/organizations', [adminController::class, 'organizations'])->name('admin.orgs')->middleware('auth:admin');
+    Route::get('/users', [adminController::class, 'userPage'])->name('admin.users')->middleware('auth:admin');
+    Route::get('/users/update/{id}', [adminController::class, 'createU'])->name('admin.updateCreate')->middleware('auth:admin');
+    Route::post('/users/update/{id}', [adminController::class, 'update'])->name('admin.updatePost')->middleware('auth:admin');
+    Route::get('/users/delete/{id}', [adminController::class, 'destroy'])->name('admin.destroy')->middleware('auth:admin');
+});
+
 Route::get('dashboard', function() {
     return view('dashboard');
-})->middleware('auth');
+})->middleware('auth:web')->name('user-dash');
+
