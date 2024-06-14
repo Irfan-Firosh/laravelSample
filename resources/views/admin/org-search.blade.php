@@ -29,7 +29,7 @@
                         <form class="form-group" action="/admin/organizations/search" method="POST">
                             @csrf
                             <div class="form-outline d-flex">
-                                <input type="text" class="form-control" name="search" placeholder="Search" value="">
+                                <input type="text" class="form-control" name="search" placeholder="Search" value="{{$search}}">
                                 <button type="submit" class="btn btn-primary px-4">
                                     <i class="fa fa-search"></i>
                                 </button>
@@ -89,11 +89,6 @@
             @endforeach
         </tbody>
       </table>
-      @section('pagination')
-      <div class="d-flex">
-        {{$orgs->links()}}
-      </div>
-      @endsection
     </div>
     @endsection
 </x-admin>

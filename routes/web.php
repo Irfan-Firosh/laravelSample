@@ -45,6 +45,7 @@ Route::prefix('admin')->group(function() {
     Route::post('organizations/update/{id}', [OrganizationController::class, 'update'])->name('org.update')->middleware('auth:admin');
     Route::get('/organizations/delete/{id}', [OrganizationController::class, 'destroy'])->name('org.destroy')->middleware('auth:admin');
     Route::post('organizations/search', [OrganizationController::class, 'search'])->name('org.search')->middleware('auth:admin');
+    Route::get('organizations/search', [adminController::class, 'organizations'])->name('org.search.get')->middleware('auth:admin');
 });
 
 Route::get('dashboard', function() {

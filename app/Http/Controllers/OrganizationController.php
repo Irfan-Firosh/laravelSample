@@ -62,7 +62,7 @@ class OrganizationController extends Controller
         ]);
         $search = $info['search'];
         $orgs = Organization::where('name' , 'like', '%' . $search .'%')->get();
-        return redirect()->route('admin.orgs')->with('orgs', $orgs);
+        return view('admin.org-search', ['search' => $search, 'orgs' =>$orgs]);
     }
 
     /**
