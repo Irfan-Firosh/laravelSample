@@ -26,15 +26,17 @@ class adminController extends Controller
     }
 
     public function createU($id) {
-        request()->validate([
-            'email' => 'required|email|max:255|unique:users,email',
-            'username' => 'required|max:255|min:3|unique:users,name',
-        ]);
-        return view('admin.userUpdate')->with('id', $id);
+        $user = User::find($id);
+        return view('admin.userUpdate')->with('user', $user);
     }
 
     public function update($id) {
-
+        $credentials = request()->validate([
+            'email' => 'required|email|max:255|unique:users,email,'.$id,
+            'name' => 'required|max:255|min:3|unique:users,name,'.$id,
+        ]);
+        $user = User::find($id)->update($credentials);
+        return redirect()->route('admin.users');
     }
 
     public function destroy($id) {
