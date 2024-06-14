@@ -36,7 +36,7 @@
                 <!-- LOGO -->
                 <div class="topbar-left">
                     <div class="text-center">
-                        <a href="index.html" class="logo"><i class="md md-terrain"></i> <span>Moltran </span></a>
+                        <a href="#" class="logo"><i class="md md-terrain"></i> <span>Moltran </span></a>
                     </div>
                 </div>
                 <!-- Button mobile view to collapse sidebar menu -->
@@ -49,7 +49,7 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="javascript:void(0)" class="dropdown-item"><i class="md md-face-unlock mr-2"></i> Profile</a></li>
                                     <li>
-                                        <form action="/logout/admin" class="dropdown-item" method="POST">
+                                        <form action="{{route('logout.admin')}}" class="dropdown-item" method="POST">
                                             @csrf
                                             <button type="submit" class="btn btn-primary" style="border-radius: 1rem;"><i class="md md-settings-power mr-2"></i> Logout</button>
                                         </form>

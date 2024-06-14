@@ -49,5 +49,5 @@ Route::prefix('admin')->group(function() {
 
 Route::get('dashboard', function() {
     return view('dashboard');
-})->middleware('auth:web')->name('user.dash');
+})->middleware('auth:web')->name('user-dash');
 

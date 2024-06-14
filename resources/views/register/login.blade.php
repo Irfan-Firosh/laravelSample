@@ -12,7 +12,7 @@
           <div class="card" style="border-radius: 1rem">
             <div class="card-body text-center p-5">
               <h3 class="mb-5">Sign In.</h3>
-              <form action="/login" method="POST">
+              <form action="{{route('login.store')}}" method="POST">
                 @csrf
                 <div class="form-floating mb-4">
                   <input
@@ -44,7 +44,7 @@
                     <label for="frem" class="form-check-label">Remember me</label>
                   </div>
                   <div class="d-flex justify-content-end col d-flex justify-content-start">
-                      <a href="/register" class="text-decoration-none">Not registered?</a>
+                      <a href="{{route('register.create')}}" class="text-decoration-none">Not registered?</a>
                   </div>
                 </div>
                 <button type="submit" class="btn btn-primary btn-lg w-100 mb-3">

@@ -21,10 +21,10 @@
 <body>
     <nav class="navbar navbar-light p-2 sticky-top bg-light fixed-left">
         <div class="container">
-            <a href="\" class="navbar-brand">💬 Ping CRM</a>
+            <a href="{{route('home')}}" class="navbar-brand">💬 Ping CRM</a>
             @auth
                 <div class="d-flex justify-content-end me-5">
-                    <form action="/logout/user" method="POST">
+                    <form action="{{route('logout.user')}}" method="POST">
                         @csrf
                         <button type="submit" class="fs-5 btn btn-m btn-primary">Logout</button>
                     </form>

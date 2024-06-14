@@ -26,7 +26,7 @@
             
                 <div class="row mt-2">
                     <div class="col-sm-4 text-center text-muted">
-                        <form class="form-group" action="{{route('org.search')}}" method="POST">
+                        <form class="form-group" action="/admin/organizations/search" method="POST">
                             @csrf
                             <div class="form-outline d-flex">
                                 <input type="text" class="form-control" name="search" placeholder="Search" value="">

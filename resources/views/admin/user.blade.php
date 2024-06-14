@@ -15,13 +15,13 @@
     </style>
     @section('items')
         <li>
-            <a href="/admin" class="waves-effect"><i class="md md-home"></i><span> Dashboard </span></a>
+            <a href="{{route('admin-dash')}}" class="waves-effect"><i class="md md-home"></i><span> Dashboard </span></a>
         </li>
         <li>
-            <a href="/admin/organizations" class="waves-effect"><i class="md md-event"></i><span> Organizations </span></a>
+            <a href="{{route('admin.orgs')}}" class="waves-effect"><i class="md md-event"></i><span> Organizations </span></a>
         </li>
         <li>
-            <a href="/admin/users" class="waves-effect active"><i class="ion-android-contact"></i><span> Contacts </span></a>
+            <a href="{{route('admin.users')}}" class="waves-effect active"><i class="ion-android-contact"></i><span> Contacts </span></a>
         </li>
     @endsection
     @section('body')
@@ -51,8 +51,8 @@
                 <td class="h6">{{$user->email}}</td>
                 <td>
                   <div class="d-flex">
-                    <a href="./users/update/{{$user->id}}" class="edit nav-link text-muted small-col"><i class="fa fa-edit edit"></i></a>
-                    <a href="./users/delete/{{$user->id}}" class="del nav-link text-muted small-col"><i class="fa fa-trash-o del"></i></a>
+                    <a href="{{route('admin.updateCreate', $user->id)}}" class="edit nav-link text-muted small-col"><i class="fa fa-edit edit"></i></a>
+                    <a href="{{route('admin.updatePost', $user->id)}}" class="del nav-link text-muted small-col"><i class="fa fa-trash-o del"></i></a>
                   </div>
                 </td>
             </tr>

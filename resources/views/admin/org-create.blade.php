@@ -1,13 +1,13 @@
 <x-admin>
     @section('items')
     <li>
-        <a href="/admin" class="waves-effect"><i class="md md-home"></i><span> Dashboard </span></a>
+        <a href="{{route('admin-dash')}}" class="waves-effect"><i class="md md-home"></i><span> Dashboard </span></a>
     </li>
     <li>
-        <a href="/admin/organizations" class="waves-effect active"><i class="md md-event"></i><span> Organizations </span></a>
+        <a href="{{route('admin.orgs')}}" class="waves-effect active"><i class="md md-event"></i><span> Organizations </span></a>
     </li>
     <li>
-        <a href="/admin/users" class="waves-effect"><i class="ion-android-contact"></i><span> Contacts </span></a>
+        <a href="{{route('admin.users')}}" class="waves-effect"><i class="ion-android-contact"></i><span> Contacts </span></a>
     </li>
     @endsection 
     
@@ -26,7 +26,7 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header"><h3 class="card-title">Create An Organization</h3></div>
-                    <form class="form-horizontal" action="./create" method="POST"> 
+                    <form class="form-horizontal" action="{{route('org.store')}}" method="POST"> 
                         @csrf     
                         <div class="card-body">
                             <div class="form-group row">

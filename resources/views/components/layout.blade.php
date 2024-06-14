@@ -25,18 +25,18 @@
             @guest
                 <div class="d-flex">
                 @if (substr_count(url()->current(), 'login'))
-                    <a href="/register" class="a-hov nav-link fs-5 link-dark link-offset-2 link-underline link-underline-opacity-0 mx-2">Register</a>
+                    <a href="{{route('register.create')}}" class="a-hov nav-link fs-5 link-dark link-offset-2 link-underline link-underline-opacity-0 mx-2">Register</a>
                 @elseif (substr_count(url()->current(), 'register'))
-                    <a href="/login" class="a-hov nav-link fs-5 link-dark link-offset-2 link-underline link-underline-opacity-0 mx-2">Login</a> 
+                    <a href="{{route('login')}}" class="a-hov nav-link fs-5 link-dark link-offset-2 link-underline link-underline-opacity-0 mx-2">Login</a> 
                 @else
-                    <a href="/register" class="a-hov nav-link fs-5 link-dark link-offset-2 link-underline link-underline-opacity-0 mx-2">Register</a>
-                    <a href="/login" class="a-hov nav-link fs-5 link-dark link-offset-2 link-underline link-underline-opacity-0 mx-2">Login</a> 
+                    <a href="{{route('register.create')}}" class="a-hov nav-link fs-5 link-dark link-offset-2 link-underline link-underline-opacity-0 mx-2">Register</a>
+                    <a href="{{route('login')}}" class="a-hov nav-link fs-5 link-dark link-offset-2 link-underline link-underline-opacity-0 mx-2">Login</a> 
                 @endif
                 </div>
             @endguest
             @auth
                 <div class="d-flex justify-content-end me-5">
-                    <form action="/logout/user" method="POST">
+                    <form action="{{route('logout.user')}}" method="POST">
                         @csrf
                         <button type="submit" class="fs-5 btn btn-m btn-primary">Logout</button>
                     </form>

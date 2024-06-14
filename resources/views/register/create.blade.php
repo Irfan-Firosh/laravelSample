@@ -5,7 +5,7 @@
                 <div class="card" style="border-radius: 1rem;">
                     <div class="card-body p-5 text-center">
                         <h3 class="mb-5">Register</h3>
-                        <form action="/register" method="POST">
+                        <form action="{{route('register.store')}}" method="POST">
                             @csrf
                             <div class="form-floating mb-4">
                                 <input type="text" name="email" class="form-control px-3 form-control-lg" placeholder="" value="{{old('email')}}">

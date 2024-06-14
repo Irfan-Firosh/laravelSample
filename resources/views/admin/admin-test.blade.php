@@ -1,13 +1,13 @@
 <x-admin>
     @section('items')
         <li>
-            <a href="/admin" class="waves-effect"><i class="md md-home"></i><span> Dashboard </span></a>
+            <a href="{{route('admin-dash')}}" class="waves-effect"><i class="md md-home"></i><span> Dashboard </span></a>
         </li>
         <li>
-            <a href="/admin/organizations" class="waves-effect"><i class="md md-event"></i><span> Organizations </span></a>
+            <a href="{{route('admin.orgs')}}" class="waves-effect"><i class="md md-event"></i><span> Organizations </span></a>
         </li>
         <li>
-            <a href="/admin/users" class="waves-effect"><i class="ion-android-contact"></i><span> Contacts </span></a>
+            <a href="{{route('admin.users')}}" class="waves-effect"><i class="ion-android-contact"></i><span> Contacts </span></a>
         </li>
     @endsection
     @section('body')
@@ -22,7 +22,7 @@
     </div>
     <div class="row">
         <div class="col">
-            <a href="admin/organizations">
+            <a href="{{route('admin.orgs')}}">
                 <div class="mini-stat clearfix bx-shadow bg-white">
                     <span class="mini-stat-icon bg-info"><i class="fa fa-building"></i></span>
                     <div class="mini-stat-info text-right text-dark">
@@ -33,7 +33,7 @@
             </a>
         </div>
         <div class="col">
-            <a href="/admin/users">
+            <a href="{{route('admin.users')}}">
                 <div class="mini-stat clearfix bx-shadow bg-white">
                     <span class="mini-stat-icon bg-warning"><i class="fa fa-users"></i></span>
                     <div class="mini-stat-info text-right text-dark">

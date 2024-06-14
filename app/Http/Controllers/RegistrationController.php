@@ -27,6 +27,6 @@ class RegistrationController extends Controller
         $user->save();
         Auth::login($user, $remember);
         $request->session()->regenerate();
-        return redirect()->route('user.dash')->with('success', 'Your account has been created!');
+        return redirect()->route('user-dash')->with('success', 'Your account has been created!');
     }
 }
