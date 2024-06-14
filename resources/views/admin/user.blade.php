@@ -52,7 +52,7 @@
                 <td>
                   <div class="d-flex">
                     <a href="{{route('admin.updateCreate', $user->id)}}" class="edit nav-link text-muted small-col"><i class="fa fa-edit edit"></i></a>
-                    <a href="{{route('admin.updatePost', $user->id)}}" class="del nav-link text-muted small-col"><i class="fa fa-trash-o del"></i></a>
+                    <a href="{{route('admin.destroy', $user->id)}}" class="del nav-link text-muted small-col"><i class="fa fa-trash-o del"></i></a>
                   </div>
                 </td>
             </tr>

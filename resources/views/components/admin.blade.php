@@ -36,7 +36,7 @@
                 <!-- LOGO -->
                 <div class="topbar-left">
                     <div class="text-center">
-                        <a href="#" class="logo"><i class="md md-terrain"></i> <span>Moltran </span></a>
+                        <a href="{{route('admin-dash')}}" class="logo"><i class="md md-terrain"></i> <span>Ping Crm</span></a>
                     </div>
                 </div>
                 <!-- Button mobile view to collapse sidebar menu -->
