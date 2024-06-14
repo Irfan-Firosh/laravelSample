@@ -20,16 +20,13 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', [queries::class, 'index']);
-Route::get('/secret', function() {
-    echo "<h1>Welcome Whoever</h1>";
-})->middleware('auth.basic');
+Route::get('/', [queries::class, 'index'])->name('home');
 
-Route::get('register', [RegistrationController::class, 'register'])->middleware('guest');
-Route::post('register', [RegistrationController::class, 'store'])->middleware('guest');
+Route::get('register', [RegistrationController::class, 'register'])->middleware('guest')->name('register.create');
+Route::post('register', [RegistrationController::class, 'store'])->middleware('guest')->name('register.store');
 
 Route::get('login', [LoginController::class, 'login'])->middleware('guest')->name('login');
-Route::post('login', [LoginController::class, 'store'])->middleware('guest');
+Route::post('login', [LoginController::class, 'store'])->middleware('guest')->name('login.store');
 
 Route::post('logout/admin', [SessionController::class, 'logoutAdmin'])->middleware('auth:admin')->name('logout.admin');
 Route::post('logout/user', [SessionController::class, 'logoutUser'])->middleware('auth:web')->name('logout.user');

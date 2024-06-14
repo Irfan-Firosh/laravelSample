@@ -11,14 +11,14 @@ class SessionController extends Controller
         Auth('web')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect("/")->with('Success', 'Logged Out Succesfully!');
+        return redirect()->route('home')->with('Success', 'Logged Out Succesfully!');
     }
 
     public function logoutAdmin(Request $request) {
         Auth('admin')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect("/")->with('Success', 'Logged Out Succesfully!');
+        return redirect()->route('home')->with('Success', 'Logged Out Succesfully!');
     }
     
     
