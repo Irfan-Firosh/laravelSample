@@ -26,7 +26,7 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header"><h3 class="card-title">Update An Organization</h3></div>
-                    <form class="form-horizontal" action="{{route('org.update')}}" method="POST"> 
+                    <form class="form-horizontal" action="{{route('org.update', $org->id)}}" method="POST"> 
                         @csrf     
                         <div class="card-body">
                             <div class="form-group row">

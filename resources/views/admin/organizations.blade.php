@@ -81,7 +81,7 @@
                 <td class="h6">{{$org->phone}}</td>
                 <td>
                   <div class="d-flex">
-                    <a href="{{route('org.edit', $org->id)}}" class="edit nav-link text-muted small-col"><i class="fa fa-edit edit"></i></a>
+                    <a href="{{route('org.edit',$org->id)}}" class="edit nav-link text-muted small-col"><i class="fa fa-edit edit"></i></a>
                     <a href="{{route('org.destroy', $org->id)}}" class="del nav-link text-muted small-col"><i class="fa fa-trash-o del"></i></a>
                   </div>
                 </td>

@@ -84,9 +84,9 @@ class OrganizationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        $credentials = $request->validate([
+        $credentials = request()->validate([
             'name' => 'required|max:255|unique:organizations,name,'.$id,
             'email' => 'required|email|unique:organizations,email,'.$id,
             'phone' => 'required|max:20|unique:organizations,phone,'.$id,
