@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Organization;
 use Illuminate\Http\Request;
 
 class OrganizationController extends Controller
@@ -13,7 +14,7 @@ class OrganizationController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -23,7 +24,7 @@ class OrganizationController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.org-create');
     }
 
     /**
@@ -34,7 +35,18 @@ class OrganizationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $credentials = $request->validate([
+            'name' => 'required|max:255|unique:organizations,name',
+            'email' => 'required|email|unique:organizations,email',
+            'phone' => 'required|unique:organizations,phone|max:20',
+            'address' => 'required|max:255',
+            'city' => 'required|max:255',
+            'province' => 'required|max:255',
+            'country' => 'required|max:255',
+            'code' => 'required|max:255'
+        ]);
+        $org = Organization::create($credentials);
+        return redirect()->route('admin.orgs');
     }
 
     /**
@@ -43,9 +55,14 @@ class OrganizationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function search()
     {
-        //
+        $info = request()->validate([
+            'search' => 'required'
+        ]);
+        $search = $info['search'];
+        $orgs = Organization::where('name' , 'like', '%' . $search .'%')->get();
+        return redirect()->route('admin.orgs')->with('orgs', $orgs);
     }
 
     /**
@@ -56,7 +73,8 @@ class OrganizationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $org = Organization::find($id);
+        return view('admin.org-update')->with('org', $org);
     }
 
     /**
@@ -68,7 +86,18 @@ class OrganizationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $credentials = $request->validate([
+            'name' => 'required|max:255|unique:organizations,name,'.$id,
+            'email' => 'required|email|unique:organizations,email,'.$id,
+            'phone' => 'required|max:20|unique:organizations,phone,'.$id,
+            'address' => 'required|max:255',
+            'city' => 'required|max:255',
+            'province' => 'required|max:255',
+            'country' => 'required|max:255',
+            'code' => 'required|max:255'
+        ]);
+        $org = Organization::find($id)->update($credentials);
+        return redirect()->route('admin.orgs');
     }
 
     /**
@@ -79,6 +108,7 @@ class OrganizationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Organization::destroy($id);
+        return back();
     }
 }

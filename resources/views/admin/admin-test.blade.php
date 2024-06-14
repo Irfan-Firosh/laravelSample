@@ -13,9 +13,9 @@
     @section('body')
     <div class="row">
         <div class="col-sm-12">
-            <h2 class="pull-left page-title"> Organizations </h2>
+            <h2 class="pull-left page-title"> Welcome ! </h2>
             <ol class="breadcrumb pull-right">
-                <li><a href="#">Moltran</a></li>
+                <li><a href="#">Ping</a></li>
                 <li class="active">Dashboard</li>
             </ol>
         </div>

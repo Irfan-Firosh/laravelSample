@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Organization;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
@@ -15,11 +16,12 @@ class adminController extends Controller
     }
 
     public function organizations() {
-        return view('admin.organizations');
+        $orgs = Organization::paginate(5);
+        return view('admin.organizations', ['orgs' => $orgs]);
     }
 
     public function userPage() {
-        $users = User::paginate(9);
+        $users = User::paginate(7);
         return view('admin.user', ['users' => $users]);
     }
 

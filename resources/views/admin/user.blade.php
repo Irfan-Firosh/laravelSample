@@ -25,6 +25,15 @@
         </li>
     @endsection
     @section('body')
+    <div class="row">
+      <div class="col-sm-12">
+          <h2 class="pull-left page-title"> Users</h2>
+          <ol class="breadcrumb pull-right">
+              <li><a href="#">Ping</a></li>
+              <li class="active">Users</li>
+          </ol>
+      </div>
+  </div>
     <table class="table table-hover">
         <thead>
           <tr>
