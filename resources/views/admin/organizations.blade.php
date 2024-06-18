@@ -7,15 +7,22 @@
         <a href="{{route('admin.orgs')}}" class="waves-effec activet"><i class="md md-event"></i><span> Organizations </span></a>
     </li>
     <li>
-        <a href="{{route('admin.users')}}" class="waves-effect"><i class="ion-android-contact"></i><span> Contacts </span></a>
+        <a href="{{route('admin.users')}}" class="waves-effect"><i class="ion-android-contact"></i><span> Users </span></a>
+    </li>
+    <li>
+        <a href="{{route('admin.contacts')}}" class="waves-effect"><i class="fa fa-phone"></i><span> Contacts </span></a>
     </li>
     @endsection
+    @php
+        session_start();
+        $_SESSION['index'] = 1;
+    @endphp
     @section('body')
     <div class="row">
         <div class="col-sm-12">
             <h2 class="pull-left page-title"> Organizations </h2>
             <ol class="breadcrumb pull-right">
-                <li><a href="#">Ping</a></li>
+                <li><a href="{{route('admin-dash')}}">Ping</a></li>
                 <li class="active">Organizations</li>
             </ol>
         </div>
@@ -75,14 +82,14 @@
         <tbody>
             @foreach ($orgs as $org)
             <tr>
-                <th scope="row">{{$org->id}}</th>
+                <th scope="row">{{$_SESSION['index']++}}</th>
                 <td class="h6 mt-1">{{$org->name}}</td>
                 <td class="h6">{{$org->city}}</td>
                 <td class="h6">{{$org->phone}}</td>
                 <td>
                   <div class="d-flex">
-                    <a href="{{route('org.edit',$org->id)}}" class="edit nav-link text-muted small-col"><i class="fa fa-edit edit"></i></a>
-                    <a href="{{route('org.destroy', $org->id)}}" class="del nav-link text-muted small-col"><i class="fa fa-trash-o del"></i></a>
+                    <a href="{{route('org.edit',$org->id)}}" class="edit nav-link text-white mx-2 small-col" style="background-color: rgb(21, 21, 248); border-radius:0.5rem"><i class="fa fa-edit edit"></i></a>
+                    <a href="{{route('org.destroy', $org->id)}}" class="del nav-link text-white mx-2 small-col" style="background-color: rgb(205, 64, 64); border-radius:0.5rem"><i class="fa fa-trash-o del"></i></a>
                   </div>
                 </td>
             </tr>

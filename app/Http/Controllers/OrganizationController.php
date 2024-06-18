@@ -74,7 +74,8 @@ class OrganizationController extends Controller
     public function edit($id)
     {
         $org = Organization::find($id);
-        return view('admin.org-update')->with('org', $org);
+        $contacts = $org->contacts;
+        return view('admin.org-update' , ['org' => $org, 'contacts' => $contacts]);
     }
 
     /**

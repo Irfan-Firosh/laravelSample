@@ -12,11 +12,21 @@ class RegistrationController extends Controller
         return view('register.create');
     }
     public function store(Request $request) {
-        request()->validate([
-            'email' => 'required|email|max:255|unique:users,email',
-            'username' => 'required|max:255|min:3|unique:users,name',
-            'password' => 'required|max:12|min:7|required_with:password_confirmation|same:password_confirmation',
+        $request->validate([
+            'email' => 'required|email|max:255|regex:/^[^@]+@[^@]+\.[^@]+$/|unique:users,email|',
+            'username' => 'required|max:30|min:3|unique:users,name',
+            'password' => [
+                'required',
+                'max:12',
+                'min:7',
+                'regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&~])(?=.*[a-z]).{7,12}$/',
+                'required_with:password_confirmation',
+                'same:password_confirmation'
+            ],
             'password_confirmation' => 'required|max:12|min:7'
+        ], [
+            'password.regex' => 'The password must include at least one uppercase letter, one special character, and one digit.',
+            'email.regex' => 'Invalid Email Address'
         ]);
         $remember = $request->input('frem');
         $data = $request->all();
@@ -27,6 +37,6 @@ class RegistrationController extends Controller
         $user->save();
         Auth::login($user, $remember);
         $request->session()->regenerate();
-        return redirect()->route('user-dash')->with('success', 'Your account has been created!');
+        return redirect()->route('register.create')->with('success', 'Succesfully Created');
     }
 }

@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\adminController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\queries;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\SessionController;
+use App\Models\Contacts;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,7 +24,7 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [queries::class, 'index'])->name('home');
 
-Route::get('register', [RegistrationController::class, 'register'])->middleware('guest')->name('register.create');
+Route::get('register', [RegistrationController::class, 'register'])->name('register.create');
 Route::post('register', [RegistrationController::class, 'store'])->middleware('guest')->name('register.store');
 
 Route::get('login', [LoginController::class, 'login'])->middleware('guest')->name('login');
@@ -46,6 +48,12 @@ Route::prefix('admin')->group(function() {
     Route::get('/organizations/delete/{id}', [OrganizationController::class, 'destroy'])->name('org.destroy')->middleware('auth:admin');
     Route::post('organizations/search', [OrganizationController::class, 'search'])->name('org.search')->middleware('auth:admin');
     Route::get('organizations/search', [adminController::class, 'organizations'])->name('org.search.get')->middleware('auth:admin');
+    Route::get('/contacts', [ContactController::class, 'index'])->name('admin.contacts')->middleware('auth:admin');
+    Route::get('contacts/create', [ContactController::class, 'create'])->name('admin.contacts.create')->middleware('auth:admin');
+    Route::post('contacts/create', [ContactController::class, 'store'])->name('admin.contacts.store')->middleware('auth:admin');
+    Route::get('contacts/delete/{id}', [ContactController::class, 'destroy'])->name('admin.conacts.destroy')->middleware('auth:admin');
+    Route::get('contacts/update/{id}', [ContactController::class, 'edit'])->name('admin.contacts.edit')->middleware('auth:admin');
+    Route::post('contacts/update/{id}', [ContactController::class, 'update'])->name('admin.contacts.update')->middleware('auth:admin');
 });
 
 Route::get('dashboard', function() {

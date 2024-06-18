@@ -7,7 +7,10 @@
         <a href="{{route('admin.orgs')}}" class="waves-effec activet"><i class="md md-event"></i><span> Organizations </span></a>
     </li>
     <li>
-        <a href="{{route('admin.users')}}" class="waves-effect"><i class="ion-android-contact"></i><span> Contacts </span></a>
+        <a href="{{route('admin.users')}}" class="waves-effect"><i class="ion-android-contact"></i><span> Users </span></a>
+    </li>
+    <li>
+        <a href="{{route('admin.contacts')}}" class="waves-effect"><i class="fa fa-phone"></i><span> Contacts </span></a>
     </li>
     @endsection
     @section('body')

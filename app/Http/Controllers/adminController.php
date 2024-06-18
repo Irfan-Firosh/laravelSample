@@ -36,7 +36,8 @@ class adminController extends Controller
             'name' => 'required|max:255|min:3|unique:users,name,'.$id,
         ]);
         $user = User::find($id)->update($credentials);
-        return redirect()->route('admin.users');
+        $success = "Updated succesfully";
+        return redirect()->route('admin.users')->with('success', $success);
     }
 
     public function destroy($id) {

@@ -4,23 +4,21 @@
         <a href="{{route('admin-dash')}}" class="waves-effect"><i class="md md-home"></i><span> Dashboard </span></a>
     </li>
     <li>
-        <a href="{{route('admin.orgs')}}" class="waves-effect active"><i class="md md-event"></i><span> Organizations </span></a>
+        <a href="{{route('admin.orgs')}}" class="waves-effect"><i class="md md-event"></i><span> Organizations </span></a>
     </li>
     <li>
         <a href="{{route('admin.users')}}" class="waves-effect"><i class="ion-android-contact"></i><span> Users </span></a>
     </li>
     <li>
-        <a href="{{route('admin.contacts')}}" class="waves-effect"><i class="fa fa-phone"></i><span> Contacts </span></a>
+        <a href="{{route('admin.contacts')}}" class="waves-effect active"><i class="fa fa-phone"></i><span> Contacts </span></a>
     </li>
-    @endsection 
-    
+    @endsection
     @section('body')
     <div class="row">
         <div class="col-sm-12">
             <h2 class="pull-left page-title"> Create Organization </h2>
             <ol class="breadcrumb pull-right">
-                <li><a href="{{route('admin-dash')}}">Ping</a></li>
-                <li class="text-muted">Organizations</li>
+                <li><a href="{{route('admin.contacts')}}">Contacts</a></li>
                 <li class="active">Create</li>
             </ol>
         </div>
@@ -28,17 +26,32 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
-                <div class="card-header"><h3 class="card-title">Create An Organization</h3></div>
-                    <form class="form-horizontal" action="{{route('org.store')}}" method="POST"> 
+                <div class="card-header"><h3 class="card-title">Create A Contact</h3></div>
+                    <form class="form-horizontal fs-6" action="{{route('admin.contacts.store')}}" method="POST"> 
                         @csrf     
                         <div class="card-body">
                             <div class="form-group row">
                                 <div class="col mx-1">
-                                    <label for="name">Name:</label>
-                                    <input type="text" name="name" class="form-control" placeholder="" value="{{old('name')}}">
+                                    <label for="first_name">First Name:</label>
+                                    <input type="text" name="first_name" class="form-control" placeholder="" value="{{old('first_name')}}">
                                 </div>
                                 <div class="col">
-                                    <label for="name">Email:</label>
+                                    <label for="last_name">Last Name:</label>
+                                    <input type="text" name="last_name" class="form-control" placeholder="" value="{{old('last_name')}}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col mx-1">
+                                    <label for="organization">Organization:</label>
+                                    <select name="organization" class="form-select" aria-label=".form-select-lg example" value="{{old('organization')}}">
+                                        <option selected></option>
+                                        @foreach ($orgs as $org )
+                                            <option value="{{$org->name}}">{{$org->name}}</option>
+                                        @endforeach
+                                      </select>
+                                </div>
+                                <div class="col">
+                                    <label for="email">Email:</label>
                                     <input type="text" name="email" class="form-control" placeholder="" value="{{old('email')}}">
                                 </div>
                             </div>
@@ -58,18 +71,8 @@
                                     <input type="text" name="city" class="form-control" placeholder="" value="{{old('city')}}">
                                 </div>
                                 <div class="col">
-                                    <label for="province">Province/State:</label>
+                                    <label for="province">Provcine/State:</label>
                                     <input type="text" name="province" class="form-control" placeholder="" value="{{old('province')}}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col mx-1">
-                                    <label for="country">Country:</label>
-                                    <input type="text" name="country" class="form-control" placeholder="" value="{{old('country')}}">
-                                </div>
-                                <div class="col">
-                                    <label for="code">Postal Code:</label>
-                                    <input type="text" name="code" class="form-control" placeholder="" value="{{old('code')}}">
                                 </div>
                             </div>
                         </div>
@@ -97,5 +100,4 @@
         </div>
     </div>
     @endsection
-
 </x-admin>
