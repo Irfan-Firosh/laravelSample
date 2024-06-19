@@ -2,13 +2,48 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use App\Models\Organization;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class adminController extends Controller
 {
+    public function showProfile() {
+        $user = Admin::find(2);
+        return view('admin.profile')->with('user', $user);
+    }
+
+    public function editProfile(Request $request) {
+        $credentials = $request->validate([
+            'email' => 'required|email|max:255|regex:/^[^@]+@[^@]+\.[^@]+$/|unique:users,email|',
+            'name' => 'required|max:30|min:3|unique:users,name',
+            'password' => [
+                'required',
+                'max:12',
+                'min:7',
+                'regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&~])(?=.*[a-z]).{7,12}$/',
+                'required_with:password_confirmation',
+                'same:password_confirmation'
+            ],
+            'password_confirmation' => 'required|max:12|min:7'
+        ], [
+            'password.regex' => 'The password must include at least one uppercase letter, one special character, and one digit.',
+            'email.regex' => 'Invalid Email Address'
+        ]);
+        $admin = Admin::find(2); 
+        $admin->name = $credentials['name'];
+        $admin->email = $credentials['email'];
+        $admin->password = bcrypt($credentials['password']);
+        $admin->save();
+        if (Auth::guard('admin')->attempt($credentials, true)) {
+            $request->session()->regenerate();
+            return redirect()->route('admin.profile.show')->with('success', 'Updated Credentials');
+        }
+    }
+
     public function dashboard() {
         $users = DB::table('users')->get()->count();
         $orgs = DB::table('organizations')->get()->count();

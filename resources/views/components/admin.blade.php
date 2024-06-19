@@ -47,7 +47,7 @@
                             <li class="dropdown open">
                                 <a href="" class="dropdown-toggle profile" data-toggle="dropdown" aria-expanded="true"><img src="{{asset("assets/images/user-icon.png")}}" alt="user-icon" class="rounded-circle"></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="javascript:void(0)" class="dropdown-item"><i class="md md-face-unlock mr-2"></i> Profile</a></li>
+                                    <li><a href="{{route('admin.profile.show')}}" class="dropdown-item"><i class="md md-face-unlock mr-2"></i> Profile</a></li>
                                     <li>
                                         <form action="{{route('logout.admin')}}" class="dropdown-item" method="POST">
                                             @csrf
