@@ -42,13 +42,16 @@
               </ol>
           </div>
       </div>
+      <div class="my-3 d-flex justify-content-start">
+        Showing 1 - 5 contacts of {{$num}}
+      </div>
       <div class="my-3 d-flex justify-content-end">
         <a href="{{route('admin.contacts.create')}}"><button class="btn btn-lg btn-primary text-white px-5">Create Contact</button></a>
       </div>
         <table class="table table-hover">
             <thead>
               <tr>
-                <th scope="col">ID</th>
+                <th scope="col">SL.No</th>
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
                 <th scope="col">Email</th>
@@ -68,6 +71,7 @@
                       <div class="d-flex">
                         <a href="{{route('admin.contacts.update', $contact->id)}}" class="edit nav-link text-white mx-2 small-col" style="background-color: rgb(21, 21, 248); border-radius:0.5rem"><i class="fa fa-edit edit"></i></a>
                         <a href="{{route('admin.conacts.destroy', $contact->id)}}" class="del nav-link text-white mx-2 small-col" style="background-color: rgb(205, 64, 64); border-radius:0.5rem"><i class="fa fa-trash-o del"></i></a>
+                        <a href="{{route('admin.contacts.show', $contact->id)}}" class="del nav-link text-white mx-2 small-col" style="background-color: rgb(21, 17, 46); border-radius:0.5rem"><i class="fa fa-arrow-right"></i></a>
                       </div>
                     </td>
                 </tr>
@@ -81,7 +85,7 @@
               });
           </script>
             <div class="container-fluid w-25 fs-6 h-10 text-center text-white position-fixed bottom-1 end-0 text-sm rounded-xl mt-3" id="dip-item">
-                <div class="alert" style="background-color: #0d6efd"> 
+                <div class="alert" style="background-color: #0fc05f"> 
                     {{session('success')}}
                 </div>
             </div>

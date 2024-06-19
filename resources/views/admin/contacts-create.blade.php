@@ -44,7 +44,7 @@
                                 <div class="col mx-1">
                                     <label for="organization">Organization:</label>
                                     <select name="organization" class="form-select" aria-label=".form-select-lg example" value="{{old('organization')}}">
-                                        <option selected></option>
+                                        <option selected>Select Organization</option>
                                         @foreach ($orgs as $org )
                                             <option value="{{$org->name}}">{{$org->name}}</option>
                                         @endforeach
@@ -91,8 +91,10 @@
                             @endforeach
                         @endif
                         <div class="card-footer py-4">
-                            <div class="d-grid gap-2 mx-5 text-white">
-                                <button class="btn btn-primary py-0" type="submit"><h4 class="text-white">Create</h4></button>
+                            <div class="row">
+                                <div class="col-3 d-grid gap-2 mx-5 text-white">
+                                    <button class="btn btn-primary py-0" type="submit"><h4 class="text-white">Create</h4></button>
+                                </div>
                             </div>
                         </div>                            
                     </form>

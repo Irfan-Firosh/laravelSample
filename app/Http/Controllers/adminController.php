@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class adminController extends Controller
 {
     public function showProfile() {
-        $user = Admin::find(2);
+        $user = Admin::orderBy('id','asc')->first();
         return view('admin.profile')->with('user', $user);
     }
 
@@ -33,7 +33,7 @@ class adminController extends Controller
             'password.regex' => 'The password must include at least one uppercase letter, one special character, and one digit.',
             'email.regex' => 'Invalid Email Address'
         ]);
-        $admin = Admin::find(2); 
+        $admin = Admin::orderBy('id','asc')->first(); 
         $admin->name = $credentials['name'];
         $admin->email = $credentials['email'];
         $admin->password = bcrypt($credentials['password']);

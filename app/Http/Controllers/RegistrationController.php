@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\userPostRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,8 +12,8 @@ class RegistrationController extends Controller
     public function register() {
         return view('register.create');
     }
-    public function store(Request $request) {
-        $request->validate([
+    public function store(userPostRequest $request) {
+        /* $request->validate([
             'email' => 'required|email|max:255|regex:/^[^@]+@[^@]+\.[^@]+$/|unique:users,email|',
             'username' => 'required|max:30|min:3|unique:users,name',
             'password' => [
@@ -27,7 +28,8 @@ class RegistrationController extends Controller
         ], [
             'password.regex' => 'The password must include at least one uppercase letter, one special character, and one digit.',
             'email.regex' => 'Invalid Email Address'
-        ]);
+        ]); */
+        $credentials = $request->validated();
         $remember = $request->input('frem');
         $data = $request->all();
         $user = new User;

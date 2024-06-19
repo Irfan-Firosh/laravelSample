@@ -16,7 +16,13 @@ class ContactController extends Controller
     public function index()
     {
         $contacts = Contacts::paginate(5);
-        return view('admin.contacts', ['contacts' => $contacts]);
+        $num = DB::table('contacts')->get()->count();
+        return view('admin.contacts', ['contacts' => $contacts, 'num' => $num]);
+    }
+
+    public function show($id) {
+        $contact = Contacts::find($id);
+        return view('admin.contacts-show')->with('contact', $contact);
     }
 
     /**
@@ -51,17 +57,6 @@ class ContactController extends Controller
 
         Contacts::create($credentials);
         return redirect()->route('admin.contacts')->with('$success', 'Succesfully Created');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**

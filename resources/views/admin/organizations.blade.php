@@ -90,6 +90,7 @@
                   <div class="d-flex">
                     <a href="{{route('org.edit',$org->id)}}" class="edit nav-link text-white mx-2 small-col" style="background-color: rgb(21, 21, 248); border-radius:0.5rem"><i class="fa fa-edit edit"></i></a>
                     <a href="{{route('org.destroy', $org->id)}}" class="del nav-link text-white mx-2 small-col" style="background-color: rgb(205, 64, 64); border-radius:0.5rem"><i class="fa fa-trash-o del"></i></a>
+                    <a href="{{route('admin.org.show', $org->id)}}" class="del nav-link text-white mx-2 small-col" style="background-color: rgb(21, 17, 46); border-radius:0.5rem"><i class="fa fa-arrow-right"></i></a>
                   </div>
                 </td>
             </tr>

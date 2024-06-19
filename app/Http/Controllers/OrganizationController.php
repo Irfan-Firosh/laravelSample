@@ -12,9 +12,11 @@ class OrganizationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function show($id)
     {
-
+        $org = Organization::find($id);
+        $contacts = $org->contacts;
+        return view('admin.org-show' , ['org' => $org, 'contacts' => $contacts]);
     }
 
     /**

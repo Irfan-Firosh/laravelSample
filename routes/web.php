@@ -54,8 +54,10 @@ Route::prefix('admin')->group(function() {
     Route::get('contacts/delete/{id}', [ContactController::class, 'destroy'])->name('admin.conacts.destroy')->middleware('auth:admin');
     Route::get('contacts/update/{id}', [ContactController::class, 'edit'])->name('admin.contacts.edit')->middleware('auth:admin');
     Route::post('contacts/update/{id}', [ContactController::class, 'update'])->name('admin.contacts.update')->middleware('auth:admin');
+    Route::get('contacts/show/{id}', [ContactController::class, 'show'])->name('admin.contacts.show')->middleware('auth:admin');
     Route::get('/profile', [adminController::class, 'showProfile'])->name('admin.profile.show')->middleware('auth:admin');
     Route::post('/profile', [adminController::class, 'editProfile'])->name('admin.profile.edit')->middleware('auth:admin');
+    Route::get('/organizations/show/{id}', [OrganizationController::class, 'show'])->name('admin.org.show')->middleware('auth:admin');
 });
 
 Route::get('dashboard', function() {
