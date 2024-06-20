@@ -7,6 +7,7 @@ use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\queries;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\UserController;
 use App\Models\Contacts;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -32,6 +33,8 @@ Route::post('login', [LoginController::class, 'store'])->middleware('guest')->na
 
 Route::post('logout/admin', [SessionController::class, 'logoutAdmin'])->middleware('auth:admin')->name('logout.admin');
 Route::post('logout/user', [SessionController::class, 'logoutUser'])->middleware('auth:web')->name('logout.user');
+
+Route::post('loginMonish', [UserController::class, 'index']);
 
 
 Route::prefix('admin')->group(function() {
